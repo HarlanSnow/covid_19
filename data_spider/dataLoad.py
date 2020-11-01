@@ -5,14 +5,14 @@ import requests
 import json
 import time
 
-def loadWorldlist():
+def loadWorldDataJson():
     with open("./json/worldData.json", "r") as f:
         worldDataJson = json.load(f)
         # print(worldJson)
-        return worldDataJson
+    return worldDataJson
 
 def getWorldData():
-    worldDataJson = loadWorldlist()
+    worldDataJson = loadWorldDataJson()
     err_times = 0
     errList = []
     headers = {
@@ -31,7 +31,7 @@ def getWorldData():
             countryDataJson = json.loads(r.text)
             with open(savePath, "w") as f:
                 json.dump(countryDataJson, f, ensure_ascii=False)
-            time.sleep(10)
+            time.sleep(1)
 
         except:
             err_times += 1
@@ -45,7 +45,7 @@ def getWorldData():
 def loadChinaDataJson():
     with open("./json/chinaData.json", "r") as f:
         chinaDataJson = json.load(f)
-        return chinaDataJson
+    return chinaDataJson
 
 def getChinaData():
     chinaDataJson = loadChinaDataJson()
